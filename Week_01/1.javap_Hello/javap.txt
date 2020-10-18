@@ -1,0 +1,141 @@
+Classfile Hello.class
+  Last modified 2020-10-18; size 717 bytes
+  MD5 checksum c9849f0531139c86a9e186aca21cc677
+  Compiled from "Hello.java"
+public class Hello
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #7.#35         // java/lang/Object."<init>":()V
+   #2 = Double             3.0d
+   #4 = Double             4.0d
+   #6 = Class              #36            // Hello
+   #7 = Class              #37            // java/lang/Object
+   #8 = Utf8               <init>
+   #9 = Utf8               ()V
+  #10 = Utf8               Code
+  #11 = Utf8               LineNumberTable
+  #12 = Utf8               LocalVariableTable
+  #13 = Utf8               this
+  #14 = Utf8               LHello;
+  #15 = Utf8               main
+  #16 = Utf8               ([Ljava/lang/String;)V
+  #17 = Utf8               i
+  #18 = Utf8               I
+  #19 = Utf8               args
+  #20 = Utf8               [Ljava/lang/String;
+  #21 = Utf8               a
+  #22 = Utf8               b
+  #23 = Utf8               c
+  #24 = Utf8               D
+  #25 = Utf8               d
+  #26 = Utf8               add
+  #27 = Utf8               subtract
+  #28 = Utf8               multiply
+  #29 = Utf8               divide
+  #30 = Utf8               sum
+  #31 = Utf8               StackMapTable
+  #32 = Class              #20            // "[Ljava/lang/String;"
+  #33 = Utf8               SourceFile
+  #34 = Utf8               Hello.java
+  #35 = NameAndType        #8:#9          // "<init>":()V
+  #36 = Utf8               Hello
+  #37 = Utf8               java/lang/Object
+{
+  public Hello();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 1: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   LHello;
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=14, args_size=1
+         0: sipush        10086
+         3: istore_1
+         4: sipush        10010
+         7: istore_2
+         8: ldc2_w        #2                  // double 3.0d
+        11: dstore_3
+        12: ldc2_w        #4                  // double 4.0d
+        15: dstore        5
+        17: iload_1
+        18: iload_2
+        19: iadd
+        20: istore        7
+        22: iload_2
+        23: iload_1
+        24: isub
+        25: istore        8
+        27: iload_1
+        28: iload_2
+        29: imul
+        30: istore        9
+        32: dload_3
+        33: dload         5
+        35: ddiv
+        36: dstore        10
+        38: iconst_0
+        39: istore        12
+        41: iconst_0
+        42: istore        13
+        44: iload         13
+        46: bipush        10
+        48: if_icmpge     67
+        51: iload         12
+        53: iconst_2
+        54: irem
+        55: ifne          61
+        58: iinc          12, 1
+        61: iinc          13, 1
+        64: goto          44
+        67: return
+      LineNumberTable:
+        line 4: 0
+        line 5: 4
+        line 6: 8
+        line 7: 12
+        line 9: 17
+        line 10: 22
+        line 11: 27
+        line 12: 32
+        line 14: 38
+        line 15: 41
+        line 16: 51
+        line 17: 58
+        line 15: 61
+        line 20: 67
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           44      23    13     i   I
+            0      68     0  args   [Ljava/lang/String;
+            4      64     1     a   I
+            8      60     2     b   I
+           12      56     3     c   D
+           17      51     5     d   D
+           22      46     7   add   I
+           27      41     8 subtract   I
+           32      36     9 multiply   I
+           38      30    10 divide   D
+           41      27    12   sum   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = [ class "[Ljava/lang/String;", int, int, double, double, int, int, int, double, int, int ]
+          stack = []
+        frame_type = 16 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+}
+SourceFile: "Hello.java"
