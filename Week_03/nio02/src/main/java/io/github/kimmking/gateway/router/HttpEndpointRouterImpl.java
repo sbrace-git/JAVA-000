@@ -1,6 +1,7 @@
 package io.github.kimmking.gateway.router;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class HttpEndpointRouterImpl implements HttpEndpointRouter {
 
@@ -10,12 +11,12 @@ public class HttpEndpointRouterImpl implements HttpEndpointRouter {
 
     private Map<Double, String> weightMap;
 
-    private int currentIndex = 0;
+    private AtomicInteger currentIndex = new AtomicInteger(0);
 
     private int endpointsSize;
 
     public HttpEndpointRouterImpl(List<String> endpoints) {
-        this(endpoints, RouterEnum.RANDOM, null);
+        this(endpoints, RouterEnum.RANDOM);
     }
 
     public HttpEndpointRouterImpl(List<String> endpoints, RouterEnum routerEnum, int... weight) {
@@ -29,7 +30,7 @@ public class HttpEndpointRouterImpl implements HttpEndpointRouter {
             double baseWeight = 0.0d;
             for (int i = 0; i < length; i++) {
                 int weightItem = weight[i];
-                if (weightItem == 0) {
+                if (weightItem <= 0) {
                     continue;
                 }
                 weightMap.put(baseWeight += 100.0d * weightItem / weightSum, endpoints.get(i));
@@ -51,15 +52,14 @@ public class HttpEndpointRouterImpl implements HttpEndpointRouter {
     }
 
     private String roundRibbon() {
-        return endpoints.get((currentIndex++) % endpointsSize);
+        return endpoints.get((currentIndex.getAndIncrement()) % endpointsSize);
     }
 
     private String weight() {
         int random = new Random().nextInt(100);
-        for (Iterator<Map.Entry<Double, String>> iterator = weightMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Double, String> next = iterator.next();
-            if (next.getKey().byteValue() > random) {
-                return next.getValue();
+        for (Map.Entry<Double, String> entry : weightMap.entrySet()) {
+            if (entry.getKey().byteValue() > random) {
+                return entry.getValue();
             }
         }
         return null;
