@@ -31,8 +31,10 @@ public class HttpOutboundHandlerExt {
 
     public void handle(final FullHttpRequest fullRequest, final ChannelHandlerContext ctx) {
         final String url = this.backendUrl + fullRequest.uri();
+        HttpGet httpGet = new HttpGet(url);
+        fullRequest.headers().forEach(head -> httpGet.setHeader(head.getKey(),head.getValue()));
         FullHttpResponse response = null;
-        try (CloseableHttpResponse endpointResponse = httpClient.execute(new HttpGet(url))) {
+        try (CloseableHttpResponse endpointResponse = httpClient.execute(httpGet)) {
             byte[] body = EntityUtils.toByteArray(endpointResponse.getEntity());
             response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(body));
             response.headers().set("Content-Type", "application/json");

@@ -1,5 +1,7 @@
 package io.github.kimmking.gateway.inbound;
 
+import io.github.kimmking.gateway.filter.HttpRequestAddHead;
+import io.github.kimmking.gateway.filter.HttpRequestFilter;
 import io.github.kimmking.gateway.outbound.httpclient.HttpOutboundHandlerExt;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -13,7 +15,9 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
     private static Logger logger = LoggerFactory.getLogger(HttpInboundHandler.class);
     private final String proxyServer;
     private HttpOutboundHandlerExt handler;
-    
+
+    private HttpRequestFilter addRequestHeadFilter = new HttpRequestAddHead();
+
     public HttpInboundHandler(String proxyServer) {
         this.proxyServer = proxyServer;
         handler = new HttpOutboundHandlerExt(this.proxyServer);
@@ -34,7 +38,8 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 //            if (uri.contains("/test")) {
 //                handlerTest(fullRequest, ctx);
 //            }
-    
+            //添加请求头 nio:sbrace
+            addRequestHeadFilter.filter(fullRequest,ctx);
             handler.handle(fullRequest, ctx);
     
         } catch(Exception e) {
