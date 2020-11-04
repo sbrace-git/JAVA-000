@@ -13,3 +13,8 @@
 实现类 io.github.kimmking.gateway.filter.HttpRequestAddHead
 ```
 
+# 作业四 实现路由功能
+
+```
+实现类 io.github.kimmking.gateway.router.HttpEndpointRouterImpl
+```
