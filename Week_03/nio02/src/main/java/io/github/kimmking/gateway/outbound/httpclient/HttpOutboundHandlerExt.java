@@ -19,13 +19,13 @@ import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
-public class HttpOutboundHandler {
+public class HttpOutboundHandlerExt {
 
     private String backendUrl;
 
     private CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-    public HttpOutboundHandler(String backendUrl) {
+    public HttpOutboundHandlerExt(String backendUrl) {
         this.backendUrl = backendUrl;
     }
 
