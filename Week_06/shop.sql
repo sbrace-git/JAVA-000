@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80018
 File Encoding         : 65001
 
-Date: 2020-12-02 03:08:32
+Date: 2020-12-02 03:11:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ CREATE TABLE `t_good` (
   `status` varchar(255) NOT NULL COMMENT '状态',
   `version` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '版本号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8 COMMENT='商品';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品';
 
 -- ----------------------------
 -- Table structure for t_good_snapshot
@@ -59,7 +59,7 @@ CREATE TABLE `t_order` (
   `update_time` bigint(20) unsigned NOT NULL COMMENT '更新时间',
   `create_time` bigint(20) unsigned NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1200001 DEFAULT CHARSET=utf8 COMMENT='订单';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单';
 
 -- ----------------------------
 -- Table structure for t_order_detail
@@ -87,4 +87,4 @@ CREATE TABLE `t_user` (
   `create_time` bigint(20) unsigned NOT NULL COMMENT '创建时间',
   `status` varchar(255) NOT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8 COMMENT='用户';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
